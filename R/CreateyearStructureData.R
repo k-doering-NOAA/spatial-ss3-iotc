@@ -44,7 +44,7 @@ create_yr_structure_data <- function(dat,
 
   #tag_release
   pos <- match(dat$tag_releases$yr,help$ssyr)
-  datnew$tag_releases$esason <- help$ss[pos]#(help$ss[pos]-1)*3+1
+  datnew$tag_releases$season <- help$ss[pos]#(help$ss[pos]-1)*3+1
   datnew$tag_releases$yr <- help$year[pos]
   datnew$tag_releases$age <- floor(dat$tag_releases$age/4)
   pos <- match(dat$tag_releases$tfill,help$ssyr)
