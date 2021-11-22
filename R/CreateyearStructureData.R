@@ -1,14 +1,18 @@
 #' read data file with seasons as continuous years and convert into an annual
 #' model
 #' @param dat The data file with seasons as continuous years
+#' @param helper_key Filepath to the key for converting between seasons and
+#'  years
 #' @author Agurtzane Urtizberea, Kathryn Doering
-create_yr_structure_data <- function(dat) {
+create_yr_structure_data <- function(dat,
+  helper_key = file.path("inst","extdata", "helper.csv")) {
+
   # datnew will be the dat file as an annual model
   datnew <- dat
 
   # MODIFY CATCHES ----
 
-  help <- read.csv(file.path("inst","extdata", "helper.csv"))
+  help <- read.csv(helper_key)
 
   #Find the match between the years on the file (season as years)  and
   # the real years.
@@ -39,21 +43,20 @@ create_yr_structure_data <- function(dat) {
   # MODIFY tagging data ----
 
   #tag_release
-  pos <- match(dat$tag_releases$Yr,help$ssyr)
-
-  datnew$tag_releases$Season <- help$ss[pos]#(help$ss[pos]-1)*3+1
-  datnew$tag_releases$Yr <- help$year[pos]
-  datnew$tag_releases$Age <- floor(dat$tag_releases$Age/4)
+  pos <- match(dat$tag_releases$yr,help$ssyr)
+  datnew$tag_releases$esason <- help$ss[pos]#(help$ss[pos]-1)*3+1
+  datnew$tag_releases$yr <- help$year[pos]
+  datnew$tag_releases$age <- floor(dat$tag_releases$age/4)
   pos <- match(dat$tag_releases$tfill,help$ssyr)
   datnew$tag_releases$tfill <- help$year[pos]
 
   #tag_recaps
-  pos <- match(dat$tag_recaps$Yr,help$ssyr)
+  pos <- match(dat$tag_recaps$yr,help$ssyr)
 
-  datnew$tag_recaps$Season <- help$ss[pos]#(help$ss[pos]-1)*3+1
-  datnew$tag_recaps$Yr <- help$year[pos]
+  datnew$tag_recaps$season <- help$ss[pos]#(help$ss[pos]-1)*3+1
+  datnew$tag_recaps$yr <- help$year[pos]
 
-  # may want to write this to a file
+  # may want to write this tyo a file
   #SS_writedat_3.30(datnew,outfile="update3_annual.dat")
   datnew
 }
