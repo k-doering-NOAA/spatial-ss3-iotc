@@ -1,3 +1,6 @@
+
+# TODO: add to add_data() for the 4 area template.
+
 #' Add data to the 1 area template files
 #' @param dat_template_filepath Filepath to the 1 area template datafile. Note
 #'  this is in 3.30 formatting.
@@ -6,7 +9,7 @@
 #' @return An 3.30 SS3 datafile (as read in using `SS_readdat()`) containing the data
 #'  from `dat_sim_filepath`.
 add_data <- function(
-  dat_template_filepath = file.path("inst", "extdata", "TemplateIO", "data.ss"),
+  dat_template_filepath = file.path("inst", "extdata", "TemplateIO_1area", "data.ss"),
   dat_sim_filepath = file.path("data", "YFT_SRD_1A_4_v2.Rdata")) {
 
    dat_template <- r4ss::SS_readdat(dat_template_filepath, version = "3.30")
