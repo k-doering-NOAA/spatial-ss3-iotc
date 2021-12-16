@@ -29,12 +29,12 @@
  1 1 4 1 8 9
  1 1 4 3 8 9
 #
-1 #_Nblock_Patterns
- 1 
+0 #_Nblock_Patterns
+# 1
 # begin and end years of blocks
- 1 1
+# 1 1
 #
-# controls for all timevary parameters 
+# controls for all timevary parameters
 1 #_env/block/dev_adjust_method for all time-vary parms (1=warn relative to base parm bounds; 3=no bound check)
 #
 # AUTOGEN
