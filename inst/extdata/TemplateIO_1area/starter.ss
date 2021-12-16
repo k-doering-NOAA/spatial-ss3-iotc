@@ -18,8 +18,8 @@ control.ss #_ctlfile
 10 #_MCMCburn
 1 #_MCMCthin
 0 #_jitter_fraction
-1 #_minyr_sdreport
-256 #_maxyr_sdreport
+-1 #_minyr_sdreport
+-1 #_maxyr_sdreport
 0 #_N_STD_yrs
 1e-04 #_converge_criterion
 0 #_retro_yr

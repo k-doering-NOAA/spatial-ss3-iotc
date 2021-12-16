@@ -7,25 +7,25 @@
 #_data_and_control_files: data.ss // control.ss
 0  # 0 means do not read wtatage.ss; 1 means read and use wtatage.ss and also read and use growth parameters
 1  #_N_Growth_Patterns
-1 #_N_platoons_Within_GrowthPattern 
+1 #_N_platoons_Within_GrowthPattern
 #_Cond 1 #_Morph_between/within_stdev_ratio (no read if N_morphs=1)
 #_Cond  1 #vector_Morphdist_(-1_in_first_val_gives_normal_approx)
 #
 3 # recr_dist_method for parameters:  2=main effects for GP, Settle timing, Area; 3=each Settle entity; 4=none, only when N_GP*Nsettle*pop==1
 1 # not yet implemented; Future usage: Spawner-Recruitment: 1=global; 2=by area
-1 #  number of recruitment settlement assignments 
+1 #  number of recruitment settlement assignments
 0 # unused option
 #GPattern month  area  age (for each settlement assignment)
  1 1 1 0
 #
 #0 #_N_movement_definitions
 # first age that moves (real age at begin of season, not integer)
-1 #_Nblock_Patterns
- 1 
+0 #_Nblock_Patterns
+# 1
 # begin and end years of blocks
- 1 1
+# 1 1
 #
-# controls for all timevary parameters 
+# controls for all timevary parameters
 1 #_env/block/dev_adjust_method for all time-vary parms (1=warn relative to base parm bounds; 3=no bound check)
 #
 # AUTOGEN
@@ -676,6 +676,7 @@
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_5
  -20 20 10  10  2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_6
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_7
+ -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_8
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_1
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_2
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_3
@@ -683,6 +684,7 @@
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_5
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_6
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_7
+ -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_8
 #
 # deviation vectors for timevary parameters
 #  base   base first block   block  env  env   dev   dev   dev   dev   dev
