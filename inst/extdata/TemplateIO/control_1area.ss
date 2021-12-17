@@ -40,7 +40,7 @@
 #
 #
 #
-# setup for M, growth, maturity, fecundity, recruitment distibution, movement 
+# setup for M, growth, maturity, fecundity, recruitment distibution, movement
 #
 3 #_natM_type:_0=1Parm; 1=N_breakpoints;_2=Lorenzen;_3=agespecific;_4=agespec_withseasinterpolate
  #_Age_natmort_by sex x growthpattern
@@ -95,7 +95,7 @@
  -3 3 1 1 0.8 6 -3 0 0 0 0 0.5 0 0 # Eggs/kg_inter_Fem
  -3 3 0 0 0.8 6 -3 0 0 0 0 0.5 0 0 # Eggs/kg_slope_wt_Fem
 # Hermaphroditism
-#  Recruitment Distribution  
+#  Recruitment Distribution
  -5 5 0 0 0 0.25 -3 0 0 0 0 0 0 0 # RecrDist_GP_1_area_1_month_1  #area 1 is the base, so parameter=0.0
 #  Cohort growth dev base
  0.1 10 1 1 1 6 -1 0 0 0 0 0 0 0 # CohortGrowDev
@@ -105,9 +105,9 @@
 #  fraction female, by GP
  0.000001 0.999999 0.5 0.5  0.5 0 -99 0 0 0 0 0 0 0 # FracFemale_GP_1
 #
-# timevary MG parameters 
+# timevary MG parameters
 #_ LO HI INIT PRIOR PR_SD PR_type  PHASE
-# info on dev vectors created for MGparms are reported with other devs after tag parameter section 
+# info on dev vectors created for MGparms are reported with other devs after tag parameter section
 #
 #_seasonal_effects_on_biology_parms
  0 0 0 0 0 0 0 0 0 0 #_femwtlen1,femwtlen2,mat1,mat2,fec1,fec2,Malewtlen1,malewtlen2,L1,K
@@ -126,7 +126,7 @@
 1 #do_recdev:  0=none; 1=devvector (R=F(SSB)+dev); 2=deviations (R=F(SSB)+dev); 3=deviations (R=R0*dev; dev2=R-f(SSB)); 4=like 3 with sum(dev2) adding penalty
 89 # first year of main recr_devs; early devs can preceed this era
 256 # last year of main recr_devs; forecast devs start in following year
-3 #_recdev phase 
+3 #_recdev phase
 0 # (0/1) to read 13 advanced options
 #_Cond 0 #_recdev_early_start (0=none; neg value makes relative to recdev_start)
 #_Cond 0 #_recdev_early_phase
@@ -152,7 +152,7 @@
 #  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 # implementation error by year in forecast:  0
 #
-#Fishing Mortality info 
+#Fishing Mortality info
 0.1 # F ballpark
 208 # F ballpark year (neg value to disable)
 3 # F_Method:  1=Pope; 2=instan. F; 3=hybrid (hybrid is recommended)
@@ -167,7 +167,7 @@
 # 285 305
 # F rates by fleet
 # Yr:  1
-# seas:  1 
+# seas:  1
 #
 #_Q_setup for fleets with cpue or survey data
 #_1:  fleet number
@@ -199,7 +199,7 @@
 #Pattern:_23; parm=6; double_normal where final value is directly equal to sp(6) so can be >1.0
 #Pattern:_24; parm=6; double_normal with sel(minL) and sel(maxL), using joiners
 #Pattern:_25; parm=3; exponential-logistic in size
-#Pattern:_27; parm=3+special; cubic spline 
+#Pattern:_27; parm=3+special; cubic spline
 #Pattern:_42; parm=2+special+3; // like 27, with 2 additional param for scaling (average over bin range)
 #_discard_options:_0=none;_1=define_retention;_2=retention&mortality;_3=all_discarded_dead;_4=define_dome-shaped_retention
 #_Pattern Discard Male Special
@@ -297,9 +297,9 @@
            -10             9            -6            -6             1             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY7(7)
             -9             9            -3            -3             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY7(7)
 # 8   SURVEY1 AgeSelex
-# timevary selex parameters 
+# timevary selex parameters
 #_          LO            HI          INIT         PRIOR         PR_SD       PR_type    PHASE  #  parm_name
-# info on dev vectors created for selex parms are reported with other devs after tag parameter section 
+# info on dev vectors created for selex parms are reported with other devs after tag parameter section
 #
 0   #  use 2D_AR1 selectivity(0/1):  experimental feature
 #_no 2D_AR1 selex offset used
@@ -676,7 +676,6 @@
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_5
  -20 20 10  10  2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_6
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_7
- -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_8
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_1
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_2
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_3
@@ -684,7 +683,6 @@
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_5
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_6
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_7
- -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_8
 #
 # deviation vectors for timevary parameters
 #  base   base first block   block  env  env   dev   dev   dev   dev   dev
@@ -708,7 +706,7 @@
 #      5     7    21     2     2     2     0     0     0     0     0     0
 #      5     9    22     2     2     2     0     0     0     0     0     0
      #
-# Input variance adjustments factors: 
+# Input variance adjustments factors:
  #_1=add_to_survey_CV
  #_2=add_to_discard_stddev
  #_3=add_to_bodywt_CV
@@ -719,18 +717,18 @@
 #_Factor  Fleet  Value
  -9999   1    0  # terminator
 #
-4 #_maxlambdaphase                                                                                                              
-1 #_sd_offset; must be 1 if any growthCV, sigmaR, or survey extraSD is an estimated parameter 
-# read 0 changes to default Lambdas (default value is 1.0)                                                                      
-# Like_comp codes:  1=surv; 2=disc; 3=mnwt; 4=length; 5=age; 6=SizeFreq; 7=sizeage; 8=catch; 9=init_equ_catch;                  
-# 10=recrdev; 11=parm_prior; 12=parm_dev; 13=CrashPen; 14=Morphcomp; 15=Tag-comp; 16=Tag-negbin; 17=F_ballpark; 18=initEQregime 
-#like_comp fleet  phase  value  sizefreq_method                                                                                 
-17 1 1 1 1  # confirms lambda =1 in first phase                                                                                 
-17 1 4 .01  1  # reduces lambda to 0.01 beginning in phase 4                                                                    
+4 #_maxlambdaphase
+1 #_sd_offset; must be 1 if any growthCV, sigmaR, or survey extraSD is an estimated parameter
+# read 0 changes to default Lambdas (default value is 1.0)
+# Like_comp codes:  1=surv; 2=disc; 3=mnwt; 4=length; 5=age; 6=SizeFreq; 7=sizeage; 8=catch; 9=init_equ_catch;
+# 10=recrdev; 11=parm_prior; 12=parm_dev; 13=CrashPen; 14=Morphcomp; 15=Tag-comp; 16=Tag-negbin; 17=F_ballpark; 18=initEQregime
+#like_comp fleet  phase  value  sizefreq_method
+17 1 1 1 1  # confirms lambda =1 in first phase
+17 1 4 .01  1  # reduces lambda to 0.01 beginning in phase 4
 -9999  1  1  1  1  #  terminator
 #  1 #_crashPenLambda
 #  1 # F_ballpark_lambda
-0 # (0/1) read specs for more stddev reporting 
+0 # (0/1) read specs for more stddev reporting
  # 0 0 0 0 0 0 0 0 0 # placeholder for # selex_fleet, 1=len/2=age/3=both, year, N selex bins, 0 or Growth pattern, N growth ages, 0 or NatAge_area(-1 for all), NatAge_yr, N Natages
  # placeholder for vector of selex bins to be reported
  # placeholder for vector of growth ages to be reported
