@@ -1,0 +1,48 @@
+#V3.30.18.00;_safe;_compile_date:_Sep 30 2021;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
+#_Stock_Synthesis_is_a_work_of_the_U.S._Government_and_is_not_subject_to_copyright_protection_in_the_United_States.
+#_Foreign_copyrights_may_apply._See_copyright.txt_for_more_information.
+#_User_support_available_at:NMFS.Stock.Synthesis@noaa.gov
+#_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
+#_Source_code_at:_https://github.com/nmfs-stock-synthesis/stock-synthesis
+
+This file contains warnings, suggestions and notes generated as files are read and processed
+
+1 Season durations sum to <11.9, so SS assumes you are doing years as pseudo-seasons.
+There can be only 1 season in this timestep and SS will ignore month input and assume all observation occur at middle of this pseudo-year
+mortality, growth and movement rates are per annum, so will get multiplied by the duration of this timestep as they are used.
+What gets reported as age is now age in timesteps; and input of age-specific M or K requires one entry per timestep
+Similarly, output of age-specific quantities is in terms of number of timesteps, not real years
+spawn_month and settlement_month in control file are best set to 1.0 when doing years as pseudo-seasons
+2 fishing fleet: 1 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+3 fishing fleet: 2 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+4 fishing fleet: 3 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+5 fishing fleet: 4 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+6 fishing fleet: 5 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+7 fishing fleet: 6 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+8 fishing fleet: 7 surveytime read as: 1 normally is -1 for fishing fleet; can override for indiv. obs. using 1000+month
+9 reset upper end of F_reporting_ages to be nages-2  
+10 note: Std_yrmax=-1 in starter, so no variance output for forecast quantities after endyr+1 
+11 NOTE: This model has just one settlement event. Changing to recr_dist_method 4 and removing the recruitment distribution parameters at the end of the MG parms section (below growth parameters) will produce identical results and simplify the model.
+
+21 74454.9 59364.4 58886.40.0080832 0.2265
+
+220 0.0779976 0.0578591 0.0447660.256562 0.298667
+12 1st iteration warning: ssb(endyr)/ssb(styr)= 3.20065e-10; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+13 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
+
+21 74454.9 59364.4 58886.40.0080832 0.2265
+
+220 0.0779976 0.0578591 0.0447660.256562 0.298667
+
+21 74454.9 59364.4 58886.40.0080832 0.2265
+
+220 0.0779976 0.0578591 0.0447660.256562 0.298667
+14 Forecast F capped by max possible F from control file: 2.9
+15  Main recdev biasadj is >2 times ratio of rmse to sigmaR
+
+21 74454.9 59364.4 58886.40.0080832 0.2265
+
+220 0.0779976 0.0578591 0.0447660.256562 0.298667
+16 Forecast F capped by max possible F from control file: 2.9
+17 Reminder: Number of lamdas !=0.0 and !=1.0:  1
+N warnings: 17
