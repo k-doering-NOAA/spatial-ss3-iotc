@@ -30,7 +30,8 @@ r4ss::SS_writeforecast(dat_annual_list$forecastnew, dir = "output", file = "fore
 
 #copy seasonal
 r4ss::copy_SS_inputs(dir.old = file.path("inst", "extdata", "templateIO"),
-                     dir.new = file.path("output", "test_1_area_seas_as_yrs"))
+                     dir.new = file.path("output", "test_1_area_seas_as_yrs"),
+                     overwrite = T)
 file.copy(file.path("inst/extdata/templateIO", "control_1Area.ss"),
           file.path("output", "test_1_area_seas_as_yrs", "ctl_1_area_seas_as_yrs.ss"))
 file.copy(file.path("output", "dat_1_area_seas_as_yrs.ss"),
@@ -42,8 +43,7 @@ start$ctlfile <- "ctl_1_area_seas_as_yrs.ss"
 r4ss::SS_writestarter(start, dir = file.path("output", "test_1_area_seas_as_yrs"), overwrite = TRUE)
 
 #  copy annual
-r4ss::copy_SS_inputs(dir.old = file.path("inst", "extdata", "templateIO"),
-                     dir.new = file.path("output", "test_1_area_annual"))
+dir.create(file.path("output", "test_1_area_annual"))
 file.copy(file.path("output", "dat_1_area_annual.ss"),
           file.path("output", "test_1_area_annual", "dat_1_area_annual.ss"))
 file.copy(file.path("output", "forecast_1_area_annual.ss"),
@@ -116,4 +116,8 @@ r4ss::run_SS_models(dirvec = c(file.path("output", "test_4_area_seas_as_yrs"),
                                file.path("output", "test_4_area_annual")),
                     model = "ss_3.30.18", exe_in_path = TRUE, extras = "-stopph 0 -nohess")
 
-
+# cleanup output ----
+# keep only the folders of models.
+to_rm <- list.files("output", recursive = FALSE, include.dirs =  FALSE,
+                    full.names = T, pattern = "ss$")
+file.remove(to_rm)

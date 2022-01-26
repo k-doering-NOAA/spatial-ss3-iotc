@@ -7,16 +7,18 @@
 #_data_and_control_files: data.ss // control.ss
 0  # 0 means do not read wtatage.ss; 1 means read and use wtatage.ss and also read and use growth parameters
 1  #_N_Growth_Patterns
-1 #_N_platoons_Within_GrowthPattern 
+1 #_N_platoons_Within_GrowthPattern
 #_Cond 1 #_Morph_between/within_stdev_ratio (no read if N_morphs=1)
 #_Cond  1 #vector_Morphdist_(-1_in_first_val_gives_normal_approx)
 #
 3 # recr_dist_method for parameters:  2=main effects for GP, Settle timing, Area; 3=each Settle entity; 4=none, only when N_GP*Nsettle*pop==1
 1 # not yet implemented; Future usage: Spawner-Recruitment: 1=global; 2=by area
-2 #  number of recruitment settlement assignments 
+4 #  number of recruitment settlement assignments
 0 # unused option
 #GPattern month  area  age (for each settlement assignment)
  1 1 1 0
+ 1 1 2 0
+ 1 1 3 0
  1 1 4 0
 #
 6 #_N_movement_definitions
@@ -49,7 +51,7 @@
 #
 #
 #
-# setup for M, growth, maturity, fecundity, recruitment distibution, movement 
+# setup for M, growth, maturity, fecundity, recruitment distibution, movement
 #
 3 #_natM_type:_0=1Parm; 1=N_breakpoints;_2=Lorenzen;_3=agespecific;_4=agespec_withseasinterpolate
  #_Age_natmort_by sex x growthpattern
@@ -104,10 +106,11 @@
  -3 3 1 1 0.8 6 -3 0 0 0 0 0.5 0 0 # Eggs/kg_inter_Fem
  -3 3 0 0 0.8 6 -3 0 0 0 0 0.5 0 0 # Eggs/kg_slope_wt_Fem
 # Hermaphroditism
-#  Recruitment Distribution  
+#  Recruitment Distribution
  -5 5 0 0 0 0.25 -3 0 0 0 0 0 0 0 # RecrDist_GP_1_area_1_month_1  #area 1 is the base, so parameter=0.0
- -5 5 -0.319268 0.5 0 0.25 1 0 2 109 256 1 0 0 # RecrDist_GP_1_area_4_month_1  
-#  Cohort growth dev base
+ -5 5 -0.319268 0.5 0 0.25 1 0 0 0 0 0 0 0 # RecrDist_GP_1_area_2_month_1
+ -5 5 -0.319268 0.5 0 0.25 1 0 0 0 0 0 0 0 # RecrDist_GP_1_area_3_month_1
+ -5 5 -0.319268 0.5 0 0.25 1 0 0 0 0 0 0 0 # RecrDist_GP_1_area_4_month_1  #  Cohort growth dev base
  0.1 10 1 1 1 6 -1 0 0 0 0 0 0 0 # CohortGrowDev
 #  Movement
 -15 15  -10 0 4 6 3 0 0 0 0 0 0 0 # MoveParm_A_seas_1_GP_1from_1to_2
@@ -127,11 +130,9 @@
 #  fraction female, by GP
  0.000001 0.999999 0.5 0.5  0.5 0 -99 0 0 0 0 0 0 0 # FracFemale_GP_1
 #
-# timevary MG parameters 
+# timevary MG parameters
 #_ LO HI INIT PRIOR PR_SD PR_type  PHASE
- 0.5 2 1.5 1 0.5 6 -7 # RecrDist_Area_4_dev_se
- -0.99 0.99 0 0 0.5 6 -6 # RecrDist_Area_4_dev_autocorr
-# info on dev vectors created for MGparms are reported with other devs after tag parameter section 
+# info on dev vectors created for MGparms are reported with other devs after tag parameter section
 #
 #_seasonal_effects_on_biology_parms
  0 0 0 0 0 0 0 0 0 0 #_femwtlen1,femwtlen2,mat1,mat2,fec1,fec2,Malewtlen1,malewtlen2,L1,K
@@ -150,7 +151,7 @@
 1 #do_recdev:  0=none; 1=devvector (R=F(SSB)+dev); 2=deviations (R=F(SSB)+dev); 3=deviations (R=R0*dev; dev2=R-f(SSB)); 4=like 3 with sum(dev2) adding penalty
 89 # first year of main recr_devs; early devs can preceed this era
 256 # last year of main recr_devs; forecast devs start in following year
-3 #_recdev phase 
+3 #_recdev phase
 0 # (0/1) to read 13 advanced options
 #_Cond 0 #_recdev_early_start (0=none; neg value makes relative to recdev_start)
 #_Cond 0 #_recdev_early_phase
@@ -176,7 +177,7 @@
 #  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 # implementation error by year in forecast:  0
 #
-#Fishing Mortality info 
+#Fishing Mortality info
 0.1 # F ballpark
 208 # F ballpark year (neg value to disable)
 3 # F_Method:  1=Pope; 2=instan. F; 3=hybrid (hybrid is recommended)
@@ -226,7 +227,7 @@
 #Pattern:_23; parm=6; double_normal where final value is directly equal to sp(6) so can be >1.0
 #Pattern:_24; parm=6; double_normal with sel(minL) and sel(maxL), using joiners
 #Pattern:_25; parm=3; exponential-logistic in size
-#Pattern:_27; parm=3+special; cubic spline 
+#Pattern:_27; parm=3+special; cubic spline
 #Pattern:_42; parm=2+special+3; // like 27, with 2 additional param for scaling (average over bin range)
 #_discard_options:_0=none;_1=define_retention;_2=retention&mortality;_3=all_discarded_dead;_4=define_dome-shaped_retention
 #_Pattern Discard Male Special
@@ -240,9 +241,9 @@
  0 0 0 0 # 8 fishing_other_1
  0 0 0 0 # 9 fishing_other_4
  0 0 0 0 # 10 fishing_bb_1
- 27 0 0 5 # 11 fishing_ps_1
- 27 0 0 5 # 12 fishing_ps_2
- 27 0 0 5 # 13 fishing_ps_4
+ 0 0 0 0 # 11 fishing_ps_1
+ 0 0 0 0 # 12 fishing_ps_2
+ 0 0 0 0 # 13 fishing_ps_4
  0 0 0 0 # 14 fishing_trol_1
  0 0 0 0 # 15 fishing_trol_2
  0 0 0 0 # 16 fishing_trol_4
@@ -279,9 +280,9 @@
  20 0 0 0 # 8 fishing_other_1
  20 0 0 0 # 9 fishing_other_4
  20 0 0 0 # 10 fishing_bb_1
- 0 0 0 0  # 11 fishing_ps_1
- 0 0 0 0  # 12 fishing_ps_2
- 0 0 0 0  # 13 fishing_ps_3
+ 20 0 0 0  # 11 fishing_ps_1
+ 20 0 0 0  # 12 fishing_ps_2
+ 20 0 0 0  # 13 fishing_ps_3
  20 0 0 0 # 14 fishing_trol_1
  20 0 0 0 # 15 fishing_trol_2
  20 0 0 0 # 16 fishing_trol_4
@@ -302,47 +303,8 @@
 # 9   fishing_other_4 LenSelex
 # 10  fishing_bb_1 LenSelex
 # 11  fishing_ps_1 LenSelex
-             0             0             0             0             0             0        -99          0          0          0          0        0          0          0  #  SizeSpline_Code_FISHERY11_11
-        -0.001             1      0.27            -1         0.001             1          3          0          0          0          0        0          0          0  #  SizeSpline_GradLo_FISHERY11_11
-            -1          0.02          0.02          0.02         0.001             1         -3          0          0          0          0        0          0          0  #  SizeSpline_GradHi_FISHERY11_11
-            13           200        23.125             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_1_FISHERY11_11
-            13           200       41.9035             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_2_FISHERY11_11
-            13           200       45.6322             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_3_FISHERY11_11
-            13           200       110.298             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_4_FISHERY11_11
-            13           200       145.923             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_5_FISHERY11_11
-          -35             0       -15             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_1_FISHERY11_11
-           -10             7     0.0715442             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_2_FISHERY11_11
-           -10             7      0.278668            -1            -1             0         -2          0          0          0          0       0          0          0  #  SizeSpline_Val_3_FISHERY11_11
-           -10             7      0.615126             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_4_FISHERY11_11
-           -10             7       5.17336             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_5_FISHERY11_11
 # 12   fishing_ps_2 LenSelex
-             0             0             0             0             0             0        -99          0          0          0          0        0          0          0  #  SizeSpline_Code_FISHERY12_12
-        -0.001             1      0.27            -1         0.001             1          3          0          0          0          0        0          0          0  #  SizeSpline_GradLo_FISHERY12_12
-            -1          0.02          0.02          0.02         0.001             1         -3          0          0          0          0        0          0          0  #  SizeSpline_GradHi_FISHERY12_12
-            13           200        23.125             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_1_FISHERY12_12
-            13           200       41.9035             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_2_FISHERY12_12
-            13           200       45.6322             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_3_FISHERY12_12
-            13           200       110.298             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_4_FISHERY12_12
-            13           200       145.923             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_5_FISHERY12_12
-          -35             0       -15             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_1_FISHERY12_12
-           -10             7     0.0715442             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_2_FISHERY12_12
-           -10             7      0.278668            -1            -1             0         -2          0          0          0          0       0          0          0  #  SizeSpline_Val_3_FISHERY12_12
-           -10             7      0.615126             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_4_FISHERY12_12
-           -10             7       5.17336             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_5_FISHERY12_12
 # 13   fishing_ps_4 LenSelex
-             0             0             0             0             0             0        -99          0          0          0          0        0          0          0  #  SizeSpline_Code_FISHERY13_13
-        -0.001             1      0.27            -1         0.001             1          3          0          0          0          0        0          0          0  #  SizeSpline_GradLo_FISHERY13_13
-            -1          0.02          0.02          0.02         0.001             1         -3          0          0          0          0        0          0          0  #  SizeSpline_GradHi_FISHERY13_13
-            13           200        23.125             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_1_FISHERY13_13
-            13           200       41.9035             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_2_FISHERY13_13
-            13           200       45.6322             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_3_FISHERY13_13
-            13           200       110.298             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_4_FISHERY13_13
-            13           200       145.923             0             0             0        -99          0          0          0          0       0          0          0  #  SizeSpline_Knot_5_FISHERY13_13
-          -35             0       -15             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_1_FISHERY13_13
-           -10             7     0.0715442             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_2_FISHERY13_13
-           -10             7      0.278668            -1            -1             0         -2          0          0          0          0       0          0          0  #  SizeSpline_Val_3_FISHERY13_13
-           -10             7      0.615126             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_4_FISHERY13_13
-           -10             7       5.17336             0         0.001             0          2          0          0          0          0       0          0          0  #  SizeSpline_Val_5_FISHERY13_13
 # 14   fishing_trol_1 LenSelex
 # 15   fishing_trol_2 LenSelex
 # 16   fishing_trol_4 LenSelex
@@ -401,8 +363,26 @@
            -10             9            -6            -6             1             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY10(10)
             -9             9            -3            -3             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY10(10)
 # 11   fishing_ps_1 AgeSelex
+             1            12             7             7             3             6          3          0          0          0          0          0          0          0  #  AgeSel_P1_FISHERY11(1)
+           -20            -3      -9.70313            -3          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P2_FISHERY11(1)
+           -10             9            -1            -1             3             6          4          0          0          0          0          0          0          0  #  AgeSel_P3_FISHERY11(1)
+            -5             9             3             3             1             6          4          0          0          0          0          0          0          0  #  AgeSel_P4_FISHERY11(1)
+           -10             9            -6            -6          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY11(1)
+            -9             5            -2            -2             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY11(1)
 # 12   fishing_ps_2 AgeSelex
+             1            12             7             7             3             6          3          0          0          0          0          0          0          0  #  AgeSel_P1_FISHERY12(1)
+           -20            -3      -9.70313            -3          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P2_FISHERY12(1)
+           -10             9            -1            -1             3             6          4          0          0          0          0          0          0          0  #  AgeSel_P3_FISHERY12(1)
+            -5             9             3             3             1             6          4          0          0          0          0          0          0          0  #  AgeSel_P4_FISHERY12(1)
+           -10             9            -6            -6          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY12(1)
+            -9             5            -2            -2             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY12(1)
 # 13   fishing_ps_4 AgeSelex
+             1            12             7             7             3             6          3          0          0          0          0          0          0          0  #  AgeSel_P1_FISHERY13(1)
+           -20            -3      -9.70313            -3          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P2_FISHERY13(1)
+           -10             9            -1            -1             3             6          4          0          0          0          0          0          0          0  #  AgeSel_P3_FISHERY13(1)
+            -5             9             3             3             1             6          4          0          0          0          0          0          0          0  #  AgeSel_P4_FISHERY13(1)
+           -10             9            -6            -6          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY13(1)
+            -9             5            -2            -2             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY13(1)
 # 14   fishing_troll_1 AgeSelex
              1            10             3             3             1             6          3          0          0          0          0          0          0          0  #  AgeSel_P1_FISHERY14(14)
            -20            -3      -9.70313            -3          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P2_FISHERY14(14)
@@ -417,7 +397,6 @@
             -5             9             3             3             1             6          4          0          0          0          0          0          0          0  #  AgeSel_P4_FISHERY15(15)
            -10             9            -6            -6             1             6         -5          0          0          0          0          0          0          0  #  AgeSel_P5_FISHERY15(15)
             -9             9            -3            -3             1             6          5          0          0          0          0          0          0          0  #  AgeSel_P6_FISHERY15(15)
-
 # 16   fishing_troll_4 AgeSelex
              1            10             3             3             1             6          3          0          0          0          0          0          0          0  #  AgeSel_P1_FISHERY16(16)
            -20            -3      -9.70313            -3          1000             6         -5          0          0          0          0          0          0          0  #  AgeSel_P2_FISHERY16(16)
@@ -429,9 +408,9 @@
 # 18   llcpue2 AgeSelex
 # 19   llcpue3 AgeSelex
 # 20   llcpue4 AgeSelex
-# timevary selex parameters 
+# timevary selex parameters
 #_          LO            HI          INIT         PRIOR         PR_SD       PR_type    PHASE  #  parm_name
-# info on dev vectors created for selex parms are reported with other devs after tag parameter section 
+# info on dev vectors created for selex parms are reported with other devs after tag parameter section
 #
 0   #  use 2D_AR1 selectivity(0/1):  experimental feature
 #_no 2D_AR1 selex offset used
@@ -559,127 +538,127 @@
  -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_init_119
  -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_init_120
  -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_init_121
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_1
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_2
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_3
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_4
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_5
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_6
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_7
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_8
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_9
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_10
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_11
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_12
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_13
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_14
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_15
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_16
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_17
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_18
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_19
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_20
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_21
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_22
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_23
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_24
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_25
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_26
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_27
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_28
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_29
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_30
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_31
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_32
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_33
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_34
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_35
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_36
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_37
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_38
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_39
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_40
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_41
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_42
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_43
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_44
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_45
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_46
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_47
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_48
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_49
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_50
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_51
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_52
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_53
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_54
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_55
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_56
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_57
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_58
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_59
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_60
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_61
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_62
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_63
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_64
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_65
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_66
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_67
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_68
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_69
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_70
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_71
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_72
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_73
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_74
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_75
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_76
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_77
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_78
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_79
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_80
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_81
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_82
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_83
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_84
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_85
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_86
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_87
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_88
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_89
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_90
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_91
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_92
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_93
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_94
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_95
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_96
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_97
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_98
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_99
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_100
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_101
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_102
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_103
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_104
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_105
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_106
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_107
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_108
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_109
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_110
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_111
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_112
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_113
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_114
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_115
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_116
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_117
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_118
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_119
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_120
- -15 10 -3.5 -3.5 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_121
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_1
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_2
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_3
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_4
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_5
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_6
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_7
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_8
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_9
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_10
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_11
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_12
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_13
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_14
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_15
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_16
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_17
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_18
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_19
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_20
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_21
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_22
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_23
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_24
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_25
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_26
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_27
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_28
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_29
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_30
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_31
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_32
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_33
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_34
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_35
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_36
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_37
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_38
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_39
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_40
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_41
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_42
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_43
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_44
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_45
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_46
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_47
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_48
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_49
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_50
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_51
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_52
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_53
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_54
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_55
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_56
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_57
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_58
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_59
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_60
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_61
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_62
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_63
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_64
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_65
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_66
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_67
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_68
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_69
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_70
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_71
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_72
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_73
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_74
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_75
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_76
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_77
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_78
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_79
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_80
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_81
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_82
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_83
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_84
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_85
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_86
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_87
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_88
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_89
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_90
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_91
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_92
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_93
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_94
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_95
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_96
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_97
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_98
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_99
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_100
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_101
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_102
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_103
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_104
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_105
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_106
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_107
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_108
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_109
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_110
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_111
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_112
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_113
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_114
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_115
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_116
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_117
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_118
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_119
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_120
+ -15 10 -10 -10 0.001 1 -4 0 0 0 0 0 0 0 # TG_loss_chronic_121
  1 10 7 7 0.001 1 -4 0 0 0 0 0 0 0 # TG_overdispersion_1
  1 10 7 7 0.001 1 -4 0 0 0 0 0 0 0 # TG_overdispersion_2
  1 10 7 7 0.001 1 -4 0 0 0 0 0 0 0 # TG_overdispersion_3
@@ -813,10 +792,10 @@
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_10
  -20 20 10 10 2 6 -6 0 0 0 0 0 0 0    # TG_report_fleet:_11
  -20 20 10 10 2 6 -6 0 0 0 0 0 0 0    # TG_report_fleet:_12
- -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_13
+ -20 20 10 10 2 6 -6 0 0 0 0 0 0 0    # TG_report_fleet:_13
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_14
  -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_15
- -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_16 
+ -20 20 -20 -20 2 6 -6 0 0 0 0 0 0 0  # TG_report_fleet:_16
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_1
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_2
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_3
@@ -832,14 +811,14 @@
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_13
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_14
  -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_15
- -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_16 
+ -4 0 0 0 2 6 -4 0 0 0 0 0 0 0 # TG_rpt_decay_fleet:_16
 
 #
 # deviation vectors for timevary parameters
 #  base   base first block   block  env  env   dev   dev   dev   dev   dev
 #  type  index  parm trend pattern link  var  vectr link _mnyr  mxyr phase  dev_vector
      #
-# Input variance adjustments factors: 
+# Input variance adjustments factors:
  #_1=add_to_survey_CV
  #_2=add_to_discard_stddev
  #_3=add_to_bodywt_CV
@@ -850,18 +829,18 @@
 #_Factor  Fleet  Value
  -9999   1    0  # terminator
 #
-4 #_maxlambdaphase                                                                                                              
-1 #_sd_offset; must be 1 if any growthCV, sigmaR, or survey extraSD is an estimated parameter 
-# read 0 changes to default Lambdas (default value is 1.0)                                                                      
-# Like_comp codes:  1=surv; 2=disc; 3=mnwt; 4=length; 5=age; 6=SizeFreq; 7=sizeage; 8=catch; 9=init_equ_catch;                  
-# 10=recrdev; 11=parm_prior; 12=parm_dev; 13=CrashPen; 14=Morphcomp; 15=Tag-comp; 16=Tag-negbin; 17=F_ballpark; 18=initEQregime 
-#like_comp fleet  phase  value  sizefreq_method                                                                                 
-17 1 1 1 1  # confirms lambda =1 in first phase                                                                                 
-17 1 4 .01  1  # reduces lambda to 0.01 beginning in phase 4                                                                    
+4 #_maxlambdaphase
+1 #_sd_offset; must be 1 if any growthCV, sigmaR, or survey extraSD is an estimated parameter
+# read 0 changes to default Lambdas (default value is 1.0)
+# Like_comp codes:  1=surv; 2=disc; 3=mnwt; 4=length; 5=age; 6=SizeFreq; 7=sizeage; 8=catch; 9=init_equ_catch;
+# 10=recrdev; 11=parm_prior; 12=parm_dev; 13=CrashPen; 14=Morphcomp; 15=Tag-comp; 16=Tag-negbin; 17=F_ballpark; 18=initEQregime
+#like_comp fleet  phase  value  sizefreq_method
+17 1 1 1 1  # confirms lambda =1 in first phase
+17 1 4 .01  1  # reduces lambda to 0.01 beginning in phase 4
 -9999  1  1  1  1  #  terminator
 #  1 #_crashPenLambda
 #  1 # F_ballpark_lambda
-0 # (0/1) read specs for more stddev reporting 
+0 # (0/1) read specs for more stddev reporting
  # 0 0 0 0 0 0 0 0 0 # placeholder for # selex_fleet, 1=len/2=age/3=both, year, N selex bins, 0 or Growth pattern, N growth ages, 0 or NatAge_area(-1 for all), NatAge_yr, N Natages
  # placeholder for vector of selex bins to be reported
  # placeholder for vector of growth ages to be reported

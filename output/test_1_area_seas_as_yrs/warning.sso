@@ -26,23 +26,23 @@ spawn_month and settlement_month in control file are best set to 1.0 when doing 
 
 21 74454.9 59364.4 58886.40.0080832 0.2265
 
-220 0.0779976 0.0578591 0.0447660.256562 0.298667
-12 1st iteration warning: ssb(endyr)/ssb(styr)= 3.20065e-10; suggest start with larger R0 to get near 0.4; or use depletion fleet option
+220 0.0777671 0.0576862 0.04459410.257418 0.2987
+12 1st iteration warning: ssb(endyr)/ssb(styr)= 3.18272e-10; suggest start with larger R0 to get near 0.4; or use depletion fleet option
 13 1st iteration warning: catch logL > 50% total logL; check configuration; suggest start with larger R0
 
 21 74454.9 59364.4 58886.40.0080832 0.2265
 
-220 0.0779976 0.0578591 0.0447660.256562 0.298667
+220 0.0777671 0.0576862 0.04459410.257418 0.2987
 
 21 74454.9 59364.4 58886.40.0080832 0.2265
 
-220 0.0779976 0.0578591 0.0447660.256562 0.298667
+220 0.0777671 0.0576862 0.04459410.257418 0.2987
 14 Forecast F capped by max possible F from control file: 2.9
 15  Main recdev biasadj is >2 times ratio of rmse to sigmaR
 
 21 74454.9 59364.4 58886.40.0080832 0.2265
 
-220 0.0779976 0.0578591 0.0447660.256562 0.298667
+220 0.0777671 0.0576862 0.04459410.257418 0.2987
 16 Forecast F capped by max possible F from control file: 2.9
 17 Reminder: Number of lamdas !=0.0 and !=1.0:  1
 N warnings: 17
