@@ -51,7 +51,7 @@ file.copy(file.path("output", "forecast_1_area_annual.ss"),
 file.copy(file.path("output", "ctl_1_area_annual.ss"),
           file.path("output", "test_1_area_annual", "ctl_1_area_annual.ss"), overwrite = TRUE)
 start <- r4ss::SS_readstarter(
-  file.path("output", "test_1_area_annual", "starter.ss"))
+  file.path("inst", "extdata", "starter.ss"))
 
 start$datfile <- "dat_1_area_annual.ss"
 start$ctlfile <- "ctl_1_area_annual.ss"

@@ -1,16 +1,16 @@
 #V3.30.18.00;_safe;_compile_date:_Sep 30 2021;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
 dat_1_area_seas_as_yrs.ss #_DataFile 
 ctl_1_area_seas_as_yrs.ss #_Control 
-Run_Date: Wed Jan 26 11:10:40 2022
+Run_Date: Thu Mar 17 11:57:29 2022
 Final_phase: 1  N_iterations: 2
 #_LIKELIHOOD 
 Label logL*Lambda
-TOTAL_LogL 1.97155e+07
+TOTAL_LogL 1.97077e+07
 Catch 1.95145e+07
-Survey 168384
-Length_comp 17325.2
-Tag_Data_1 7103.08
-Tag_Data_2 8212.33
+Survey 168464
+Length_comp 17301
+Tag_Data_1 2080.43
+Tag_Data_2 5452.28
 Recruitment -85.8187
 InitEQ_regime 0
 Sum_recdevs 0
