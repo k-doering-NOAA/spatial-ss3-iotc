@@ -11,7 +11,7 @@
 #'  @import dplyr
 add_data <- function(
   dat_template_filepath = file.path("inst", "extdata", "TemplateIO", "data_1area.ss"),
-  dat_sim_filepath = file.path("data", "YFT_SRD_1A_4_v2.Rdata")) {
+  dat_sim_filepath = file.path("data", "YFT_SRD_1A_4.Rdata")) {
 
    dat_template <- r4ss::SS_readdat(dat_template_filepath, version = "3.30")
    # get the data file, 1 area
@@ -53,10 +53,8 @@ add_data <- function(
 #' @import dplyr
 add_dat_4area <- function(
    dat_template_filepath = file.path("inst", "extdata", "TemplateIO", "data_4area.ss"),
-   dat_sim_filepath = file.path("data", "YFT_SRD_4A_4_v2.Rdata")) {
+   dat_sim_filepath = file.path("data", "YFT_SRD_4A_4.Rdata")) {
    dat_template <- r4ss::SS_readdat(dat_template_filepath, version = "3.30")
-   # get the data file, 1 area
-   # TODO: get data() working; for now just use load
    load(dat_sim_filepath)
    # add the data to the template ----
    dat_out <- dat_template
